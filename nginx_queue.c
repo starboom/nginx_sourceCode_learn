@@ -3,8 +3,8 @@
 typedef struct ngx_queue_s ngx_queue_t;
 
 struct ngx_queue_s{
-	ngx_queue_t *prev;
-	ngx_queue_t *next;
+	ngx_queue_t *prev;//前驱指针
+	ngx_queue_t *next;//后驱指针
 };
 
 typedef
@@ -12,14 +12,15 @@ struct my_queue{
 	char* str;
 	ngx_queue_t que;
 	int num;
-}my_queue;
+}my_queue;//测试所用数据结构,
+//包含一个ngx_queue_t类型的双向链表用来将数据连接起来
 
 #define ngx_queue_init(q) 				\
 	(q) -> prev = q;					\
-	(q) -> next = q
+	(q) -> next = q		//初始化双向链表
 
 #define ngx_queue_empty(h) 				\
-	(h == (h) -> prev)
+	(h == (h) -> prev)	//清空双向链表节点
 
 #define ngx_queue_insert_head(h,x) 		\
 	(x) -> next = (h) -> next;			\
